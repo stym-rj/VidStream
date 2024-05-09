@@ -4,17 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:layout_marginHorizontal="16dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    tools:context=".VideoActivity">
 
-    <ImageView
-        android:id="@+id/thumbnail"
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/vid"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvTitle"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
@@ -24,12 +22,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Video Title"
-        app:layout_constraintTop_toBottomOf="@id/thumbnail"
+        app:layout_constraintTop_toBottomOf="@id/vid"
         app:layout_constraintBottom_toTopOf="@id/tvChannel"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginHorizontal="8dp"
         android:textStyle="bold"
+        android:textSize="24sp"
         android:textColor="@color/black"
         />
 
@@ -39,13 +38,26 @@
         android:layout_height="wrap_content"
         android:text="Channel Name"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvDescription"
         android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:textStyle="normal"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        app:layout_constraintTop_toBottomOf="@id/tvChannel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
         android:layout_marginHorizontal="8dp"
         android:textStyle="normal"
         android:textColor="@color/black"
         />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.vidstream
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +18,7 @@ import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MyItemClickListener {
     lateinit var binding: ActivityMainBinding
     lateinit var adapter: ItemsAdapter
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         var list: MutableList<ItemsData> = mutableListOf()
 
-        adapter = ItemsAdapter(list, this)
+        adapter = ItemsAdapter(list, this, this)
         binding.rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.rv.adapter = adapter
 
@@ -55,6 +56,13 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this@MainActivity, "data fetched!", Toast.LENGTH_LONG).show()
             Log.d("database", items.toString())
             adapter.refreshList(items)
+        }
+    }
+
+    override fun onItemClicked(item: ItemsData) {
+        Intent(this, VideoActivity::class.java).also {
+            it.putExtra("data", item)
+            startActivity(it)
         }
     }
 }

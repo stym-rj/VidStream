@@ -2,7 +2,7 @@ package com.example.vidstream.networkUtils
 
 import kotlinx.serialization.Serializable
 
-@Serializable
+@kotlinx.serialization.Serializable
 data class ItemsData(
     val video: String,
     val thumbnail: String,
@@ -10,7 +10,7 @@ data class ItemsData(
     val channel: String,
     val description: String,
     val likes: Int
-)
+) : java.io.Serializable
 
 
 /**
