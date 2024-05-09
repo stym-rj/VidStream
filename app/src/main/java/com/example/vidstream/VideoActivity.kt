@@ -9,6 +9,7 @@ import com.example.vidstream.networkUtils.ItemsData
 
 class VideoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityVideoBinding
+    private lateinit var player: ExoPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +19,7 @@ class VideoActivity : AppCompatActivity() {
         val bundle: Bundle? = intent.extras
         val item = bundle!!.getSerializable("data") as ItemsData
 
-        val player = ExoPlayer.Builder(this).build()
+        player = ExoPlayer.Builder(this).build()
         binding.vid.player = player
 
         val mediaItem = MediaItem.fromUri(item.video)
@@ -29,5 +30,10 @@ class VideoActivity : AppCompatActivity() {
         binding.tvTitle.text = item.title
         binding.tvChannel.text = item.channel
         binding.tvDescription.text = item.description
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        player.release()
     }
 }
