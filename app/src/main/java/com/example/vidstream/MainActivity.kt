@@ -19,7 +19,7 @@ import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), MyItemClickListener {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     lateinit var adapter: ItemsAdapter
     private lateinit var supabase: SupabaseClient
     private var listItems: List<ItemsData> = mutableListOf()
